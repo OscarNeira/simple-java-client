@@ -1,0 +1,1 @@
+simple java client to test ingress controller
