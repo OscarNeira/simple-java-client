@@ -22,8 +22,12 @@ The script run this project in docker
 - The dump file inside the pod is copied to a local folder.
  
 ### Run only this project 
-docker build -t oscneira/java_client .
-docker run -it --rm=true oscneira/java_client
+./gradlew build installDist
+docker build -t oscneira/java_client:2.0.0 .
+docker run -it --rm=true oscneira/java_client:2.0.0
+
+## Push public repo
+docker push oscneira/java_client:2.0.0
 
 ## Mock server version used in this test
 https://github.com/OscarNeira/mockserver/tree/add/tcpdumps

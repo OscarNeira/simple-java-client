@@ -1,4 +1,5 @@
 ### Mac users
+minikube delete
 
 minikube config set vm-driver hyperkit
 

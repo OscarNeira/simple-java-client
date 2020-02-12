@@ -32,7 +32,9 @@ public class JavaClient {
     public static void main(String[] args) {
 
         System.out.println("Setup Mock Server");
+        System.out.println("Create Expectation Delay 1 Sec");
         createDelayMockServer();
+        System.out.println("Create Expectation Post simulation");
         createPostMockServer();
         System.out.println("Mock Server Ready");
 
