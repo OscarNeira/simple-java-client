@@ -27,18 +27,22 @@ public class JavaClient {
 
     //MockServer Ingress
     private static String mockServerIngressBase = "example.mockserver.com";
+    // Minikube IP test
+//    private static String mockServerIngressBase = "192.168.64.50:30282";
     private static String mockServerIngressEndpoint = "http://" + mockServerIngressBase + "/api/1/space/spectrum-aa-1/objects/jesus-test-" + randomNumbers + "%2Ftest_createSingleSmallCall%2Fload-test-1/payload";
 
     public static void main(String[] args) {
 
-        System.out.println("Setup Mock Server");
-        System.out.println("Create Expectation Delay 1 Sec");
-        createDelayMockServer();
-        System.out.println("Create Expectation Post simulation");
-        createPostMockServer();
-        System.out.println("Mock Server Ready");
+//        System.out.println("Setup Mock Server");
+//        System.out.println("mockServerIngressBase::" + mockServerIngressBase);
+//        System.out.println("Create Expectation Delay 1 Sec");
+//        createDelayMockServer();
+//        System.out.println("Create Expectation Post simulation");
+//        createPostMockServer();
+//        System.out.println("Mock Server Ready");
 
         System.out.println("START http call Small Encoded file");
+        System.out.println("mockServerIngressEndpoint::" + mockServerIngressEndpoint);
         testMockServerPayloadSmallEncodedFile();
         System.out.println("END http call Small Encoded file");
     }
