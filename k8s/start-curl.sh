@@ -15,9 +15,7 @@ sleep 10
 kubectl apply -f k8s/mockserver.yaml
 kubectl apply -f k8s/mockserver-ingress.yaml
 
-#sleep 5
-#MOCK_SERVER_POD=$(kubectl get pod -n mockserver -l app=mockserver -o jsonpath="{.items[0].metadata.name}")
-
+# wait for mock server
 for i in {1..10}
 do
   sleep 5
@@ -40,15 +38,15 @@ curl -v "http://example.mockserver.com/delay/1"
 #curl -v -X PUT "http://example.mockserver.com/mockserver/expectation" -H "accept: */*" -H "Content-Type: application/json" -d '[{"httpRequest":{"path":"/api/1/space/.*","method":"POST"},"httpResponse":{"delay":{"timeUnit":"SECONDS","value":1},"statusCode":200,"reasonPhrase":"OK"}}]'
 #curl -d '{"key1":"value1", "key2":"value2"}' -H "Content-Type: application/json" -X POST http://example.mockserver.com/api/1/space/
 
-echo ""
 echo "Create expectation Post delay 1\n"
 curl -X PUT "http://example.mockserver.com/mockserver/expectation" -H "accept: */*" -H "Content-Type: application/json" -d '[{"httpRequest":{"path":"/.*","method":"POST"},"httpResponse":{"delay":{"timeUnit":"SECONDS","value":1},"statusCode":200,"reasonPhrase":"OK"}}]'
 echo "Test expectation Post delay 1\n"
 curl -v -d '{"key1":"value1", "key2":"value2"}' -H "Content-Type: application/json" -X POST http://example.mockserver.com/api/1/space/
 
+#Delete tcpdumps file
 rm ~/tcpdump-ingress-chunk.pcap
 
-## tcpdumps in mockserver pod
+## Start tcpdumps in mockserver pod
 kubectl exec $MOCK_SERVER_POD -- tcpdump -w tcpdump-ingress-chunk.pcap &
 
 docker pull oscneira/java_client:5.0.0
